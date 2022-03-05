@@ -1,0 +1,91 @@
+.visible,
+.visible-stats {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transition: all 0.3s;
+
+  h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+
+.visible {
+  padding: 1rem calc(50% - 11em);
+  background-color: var(--background-color);
+}
+
+.visible-stats {
+  background-color: rgba(0, 0, 0, 0.75);
+
+  > div {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.5rem 3%;
+    width: min(100%, 25rem);
+    background-color: var(--background-color);
+    border-radius: .5rem;
+  }
+}
+
+#modal-help .grid {
+  grid-template-rows: repeat(1, var(--cell-size));
+  justify-content: flex-start;
+}
+
+.statistics {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 17rem;
+  margin: 0 auto 2rem;
+  font-size: .8rem;
+  text-align: center;
+
+  div {
+    flex: 1;
+  }
+}
+
+.statistics__stat {
+    display: block;
+    font-size: 2rem;
+}
+
+.graph__bar {
+  display: inline-block;
+  width: var(--count, 1rem);
+  min-width: 1rem;
+  margin: auto auto .3rem .3rem;
+  padding-right: .4rem;
+  text-align: right;
+  background-color: var(--secondary-color);
+}
+
+#share {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    max-width: 50%;
+    margin: 0;
+  }
+}
+
+.share-button {
+  padding: .8rem 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--correct-color);
+  border-radius: .2rem;
+  border: none;
+
+  svg {
+    margin-left: .5rem;
+  }
+}

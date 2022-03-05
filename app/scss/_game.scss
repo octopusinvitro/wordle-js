@@ -1,0 +1,110 @@
+.grid,
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(5, var(--cell-size));
+  grid-gap: .3em;
+}
+
+.grid {
+  grid-template-rows: repeat(6, var(--cell-size));
+  justify-content: center;
+}
+
+.help-grid {
+  grid-template-rows: repeat(1, var(--cell-size));
+  justify-content: flex-start;
+}
+
+.grid__tile,
+.help-grid__tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px solid var(--secondary-color);
+}
+
+.keyboard {
+  padding-bottom: .3rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+[data-key] {
+  flex: 1;
+  margin: .3rem .2rem;
+  padding: 1.4rem .2rem;
+  font-size: .9rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: var(--accents-color);
+  color: var(--foreground-color);
+  border-radius: .2rem;
+}
+
+.keyboard__icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+#messages {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  padding: 2rem;
+}
+
+.word {
+  display: inline-block;
+  margin: 0 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.grid__tile[data-state="correct"],
+.grid__tile[data-state="present"],
+.grid__tile[data-state="absent"] {
+  animation: flip-in 1s, flip-out 1s;
+}
+
+[data-state="correct"],
+[data-state="present"],
+[data-state="absent"] {
+  border-color: transparent;
+  transition: background-color 1.25s;
+
+  &:nth-child(5n + 2) { animation-delay: .5s; transition-delay: .5s; }
+  &:nth-child(5n + 3) { animation-delay: 1s; transition-delay: 1s; }
+  &:nth-child(5n + 4) { animation-delay: 1.5s; transition-delay: 1.5s; }
+  &:nth-child(5n + 5) { animation-delay: 2s; transition-delay: 2s; }
+}
+
+[data-state="correct"] {
+  background-color: var(--correct-color);
+}
+
+[data-state="present"] {
+  background-color: var(--present-color);
+}
+
+[data-state="absent"] {
+  background-color: var(--absent-color);
+}
+
+@keyframes flip-in {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(-90deg); }
+}
+
+@keyframes flip-out {
+  from { transform: rotateX(-90deg); }
+  to { transform: rotateX(0deg); }
+}

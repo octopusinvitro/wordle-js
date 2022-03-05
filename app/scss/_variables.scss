@@ -1,0 +1,15 @@
+:root {
+  --font-body: 'Open Sans', sans-serif;
+  --cell-size: 4em;
+
+  --background-color: hsl(240, 3%, 7%);
+  --foreground-color: hsl(0, 0%, 100%);
+  --accents-color: hsl(0, 0%, 50%);
+  --secondary-color: hsl(0, 0%, 30%);
+
+  --correct-color: hsl(115, 29%, 43%);
+  --present-color: hsl(49, 51%, 47%);
+  --absent-color: hsl(240, 2%, 23%);
+}
+
+$mq-1000-up: "only screen and (min-width: 1000px)";
