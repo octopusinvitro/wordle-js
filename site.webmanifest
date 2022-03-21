@@ -1,0 +1,16 @@
+{
+  "short_name": "Wordle",
+  "name": "Wordle",
+  "icons": [{
+    "src": "img/favicon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "hsl(240, 3%, 7%)",
+  "theme_color": "hsl(240, 3%, 7%)",
+  "permissions": [
+    "clipboardRead",
+    "clipboardWrite"
+  ]
+}

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <title>Wordle</title>
+  <meta name="description" content="Wordle clone">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Wordle">
+  <meta property="og:type" content="webste">
+  <meta property="og:image" content="img/favicon.png">
+
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?cachebust=1647451057128">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="hsl(240, 3%, 7%)">
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header>
+      <div class="header__left">
+        <button id="help">
+          <svg viewBox="0 0 1000 1000" class="header__icon">
+            <use xlink:href="img/icons.svg#help-icon"></use>
+          </svg>
+        </button>
+      </div>
+
+      <h1 class="header__center">Wordle</h1>
+
+      <div class="header__right">
+        <button id="stats">
+          <svg viewBox="0 0 512 512" class="header__icon">
+            <use xlink:href="img/icons.svg#stats-icon"></use>
+          </svg>
+        </button>
+
+        <button id="settings">
+          <svg viewBox="0 -12 536 536" class="header__icon">
+            <use xlink:href="img/icons.svg#settings-icon"></use>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="board">
+      <div id="messages"></div>
+      <div class="grid">
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+        <div class="grid__tile"></div>
+      </div>
+    </section>
+
+    <section class="keyboard">
+      <div class="row">
+        <button data-key="q">q</button>
+        <button data-key="w">w</button>
+        <button data-key="e">e</button>
+        <button data-key="r">r</button>
+        <button data-key="t">t</button>
+        <button data-key="y">y</button>
+        <button data-key="u">u</button>
+        <button data-key="i">i</button>
+        <button data-key="o">o</button>
+        <button data-key="p">p</button>
+      </div>
+
+      <div class="row">
+        <button data-key="a">a</button>
+        <button data-key="s">s</button>
+        <button data-key="d">d</button>
+        <button data-key="f">f</button>
+        <button data-key="g">g</button>
+        <button data-key="h">h</button>
+        <button data-key="j">j</button>
+        <button data-key="k">k</button>
+        <button data-key="l">l</button>
+      </div>
+
+      <div class="row">
+        <button data-key="Enter">↵Enter</button>
+        <button data-key="z">z</button>
+        <button data-key="x">x</button>
+        <button data-key="c">c</button>
+        <button data-key="v">v</button>
+        <button data-key="b">b</button>
+        <button data-key="n">n</button>
+        <button data-key="m">m</button>
+        <button data-key="Backspace">
+          <svg viewBox="0 0 512 512" class="header__icon">
+            <use xlink:href="img/icons.svg#backspace-icon"></use>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <section id="modal-help" class="visually-hidden">
+      <h2>How to play</h2>
+
+      <p>Guess the <strong>WORDLE</strong> in six tries.</p>
+
+      <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+
+      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+
+      <hr>
+
+      <p><strong>Examples</strong></p>
+      <div class="help-grid">
+        <div class="help-grid__tile" data-state="correct">w</div>
+        <div class="help-grid__tile">e</div>
+        <div class="help-grid__tile">a</div>
+        <div class="help-grid__tile">r</div>
+        <div class="help-grid__tile">y</div>
+      </div>
+      <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>
+
+      <div class="help-grid">
+        <div class="help-grid__tile">p</div>
+        <div class="help-grid__tile" data-state="present">i</div>
+        <div class="help-grid__tile">l</div>
+        <div class="help-grid__tile">l</div>
+        <div class="help-grid__tile">s</div>
+      </div>
+      <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
+
+      <div class="help-grid">
+        <div class="help-grid__tile">v</div>
+        <div class="help-grid__tile">a</div>
+        <div class="help-grid__tile">g</div>
+        <div class="help-grid__tile" data-state="absent">u</div>
+        <div class="help-grid__tile">e</div>
+      </div>
+      <p>The letter <strong>U</strong> is not in the word in any spot.</p>
+
+      <hr>
+
+      <p>A new <strong>WORDLE</strong> will be available each day!</p>
+    </section>
+
+    <section id="modal-stats" class="visually-hidden">
+      <div>
+        <h2>Statistics</h2>
+        <div class="statistics">
+          <div><span id="gamesPlayed"   class="statistics__stat">0</span>Played</div>
+          <div><span id="winPercentage" class="statistics__stat">0</span>Win %</div>
+          <div><span id="currentStreak" class="statistics__stat">0</span>Current Streak</div>
+          <div><span id="maximumStreak" class="statistics__stat">0</span>Max Streak</div>
+        </div>
+
+        <h2>Guess distribution</h2>
+        <div class="graph">
+          <div>1<span id="bar1" class="graph__bar">0</span></div>
+          <div>2<span id="bar2" class="graph__bar">0</span></div>
+          <div>3<span id="bar3" class="graph__bar" style="--count: 12em">12</span></div>
+          <div>4<span id="bar4" class="graph__bar">0</span></div>
+          <div>5<span id="bar5" class="graph__bar">0</span></div>
+          <div>6<span id="bar6" class="graph__bar">0</span></div>
+        </div>
+
+        <footer id="share">
+          <p></p>
+          <button class="visually-hidden">
+            Share
+            <svg viewBox="0 0 227 227" class="header__icon">
+              <use xlink:href="img/icons.svg#share-icon"></use>
+            </svg>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section id="modal-settings" class="visually-hidden"></section>
+  </main>
+  <!-- Icons by svgrepo.com -->
+
+  <script src="js/app.js?cachebust=1647451057128"></script>
+  <script>
+  (function() {
+    let stats = new Stats();
+    let game = new Game();
+    let options = { selectors: Selectors.GAME, delay: 2500 };
+
+    (new Modal(Selectors.HELP)).initialize();
+    (new Modal(Selectors.SETTINGS)).initialize();
+    (new ModalStats(Selectors.STATS, game, stats)).initialize();
+    (new GameUI(options, new Board('.grid__tile'), game, stats)).initialize();
+  })();
+  </script>
+
+  <!-- Default Statcounter code for Wordle clone
+  https://octopusinvitro.github.io/wordle-js/ -->
+  <script type="text/javascript">
+  var sc_project=12733643;
+  var sc_invisible=1;
+  var sc_security='ac922c27';
+  </script>
+  <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+  <noscript>
+    <div class="statcounter">
+      <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+        <img class="statcounter" src="https://c.statcounter.com/12733643/0/ac922c27/1/"
+        alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade">
+      </a>
+    </div>
+  </noscript>
+  <!-- End of Statcounter Code -->
+</body>
+</html>
